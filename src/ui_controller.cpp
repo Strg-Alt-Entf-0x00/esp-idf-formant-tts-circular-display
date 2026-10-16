@@ -18,8 +18,6 @@
 #define LGFX_USE_V1
 #include "fonts/font_config.h"
 
-static const char* TAG = "ui_controller";
-
 // UI State
 static struct {
     formant_display_mode_t mode = FORMANT_DISPLAY_MODE_TTS;
