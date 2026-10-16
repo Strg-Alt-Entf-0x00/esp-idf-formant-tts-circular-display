@@ -43,7 +43,9 @@ static struct {
     
     bool test_pattern;
     bool last_tts_state;
+    formant_display_idle_renderer_t idle_renderer = nullptr;
 } s_state{};
+
 
 void formant_display_set_mode(formant_display_mode_t mode) {
     s_state.mode = mode;
@@ -61,6 +63,11 @@ void formant_display_set_idle_text(const char* top_text, const char* bottom_text
     s_state.idle_arc_top = top_text ? top_text : "";
     s_state.idle_arc_bottom = bottom_text ? bottom_text : "";
 }
+
+void formant_display_set_idle_renderer(formant_display_idle_renderer_t renderer) {
+    s_state.idle_renderer = renderer;
+}
+
 
 void formant_display_set_tts_data(
     float amplitude,
@@ -142,16 +149,21 @@ void formant_display_render(void) {
             tts_word_tracker_draw(sprite, s_state.tts_word.c_str(), s_state.tts_word_idx, s_state.tts_amplitude);
             tts_alphabet_ring_draw(sprite, s_state.tts_phoneme.c_str(), s_state.tts_word.c_str(), s_state.tts_word_idx);
         } else {
-            // TTS Idle: Show idle arc text if configured
-            if (!s_state.idle_arc_top.empty()) {
-                curved_text_widget_draw(sprite, s_state.idle_arc_top.c_str(), 270.0f, 
-                                      theme::RADIUS_ARC, true, -1, 0.0f);
-            }
-            if (!s_state.idle_arc_bottom.empty()) {
-                curved_text_widget_draw(sprite, s_state.idle_arc_bottom.c_str(), 90.0f, 
-                                      theme::RADIUS_ARC, false, -1, 0.0f);
+            // TTS Idle: Show custom idle screen or default idle arcs
+            if (s_state.idle_renderer) {
+                s_state.idle_renderer(sprite);
+            } else {
+                if (!s_state.idle_arc_top.empty()) {
+                    curved_text_widget_draw(sprite, s_state.idle_arc_top.c_str(), 270.0f, 
+                                          theme::RADIUS_ARC, true, -1, 0.0f);
+                }
+                if (!s_state.idle_arc_bottom.empty()) {
+                    curved_text_widget_draw(sprite, s_state.idle_arc_bottom.c_str(), 90.0f, 
+                                          theme::RADIUS_ARC, false, -1, 0.0f);
+                }
             }
         }
+
     }
     
     // 3. HUD Overlays (volume level gauge)

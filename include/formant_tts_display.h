@@ -79,13 +79,21 @@ void formant_display_set_tts_data(
     int ipa_idx
 );
 
-/**
- * @brief Set text displayed on arcs during idle / silence
- * 
- * @param top_text Text for top arc (e.g., "FORMANT TTS", NULL or empty to clear)
- * @param bottom_text Text for bottom arc (e.g., "READY", NULL or empty to clear)
- */
 void formant_display_set_idle_text(const char* top_text, const char* bottom_text);
+
+/**
+ * @brief Callback function type for custom idle screen rendering
+ * @param sprite_ptr Pointer to the 240x240 LGFX_Sprite
+ */
+typedef void (*formant_display_idle_renderer_t)(void* sprite_ptr);
+
+/**
+ * @brief Register a custom idle screen renderer (called when TTS is not active)
+ * 
+ * @param renderer Callback function or NULL to revert to default text arcs
+ */
+void formant_display_set_idle_renderer(formant_display_idle_renderer_t renderer);
+
 
 /**
  * @brief Get underlying graphics sprite pointer (for custom drawing)
