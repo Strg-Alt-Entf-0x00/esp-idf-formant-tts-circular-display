@@ -1,0 +1,65 @@
+menu "Example Display Configuration"
+
+    config EXAMPLE_LCD_SPI_HOST
+        int "SPI Host device (1=SPI2_HOST, 2=SPI3_HOST)"
+        default 1
+        range 1 2
+        help
+            SPI host peripheral index (1 for SPI2_HOST, 2 for SPI3_HOST).
+
+    config EXAMPLE_LCD_MOSI_GPIO
+        int "MOSI GPIO"
+        default 28 if IDF_TARGET_ESP32P4
+        default 11 if IDF_TARGET_ESP32S3
+        default 23
+        help
+            SPI MOSI pin.
+
+    config EXAMPLE_LCD_SCLK_GPIO
+        int "SCLK GPIO"
+        default 27 if IDF_TARGET_ESP32P4
+        default 12 if IDF_TARGET_ESP32S3
+        default 18
+        help
+            SPI SCLK (Clock) pin.
+
+    config EXAMPLE_LCD_CS_GPIO
+        int "CS GPIO"
+        default 24 if IDF_TARGET_ESP32P4
+        default 10 if IDF_TARGET_ESP32S3
+        default 5
+        help
+            Display Chip Select (CS) pin.
+
+    config EXAMPLE_LCD_DC_GPIO
+        int "DC GPIO"
+        default 25 if IDF_TARGET_ESP32P4
+        default 9 if IDF_TARGET_ESP32S3
+        default 2
+        help
+            Display Data/Command (DC) pin.
+
+    config EXAMPLE_LCD_RST_GPIO
+        int "RST GPIO"
+        default 26 if IDF_TARGET_ESP32P4
+        default 8 if IDF_TARGET_ESP32S3
+        default 4
+        help
+            Display Reset (RST) pin.
+
+    config EXAMPLE_LCD_BL_GPIO
+        int "Backlight GPIO (-1 to disable PWM)"
+        default -1
+        help
+            Display backlight pin (PWM controlled via LEDC).
+            Set to -1 if backlight is hardwired to 3.3V or not used.
+
+    config EXAMPLE_LCD_SPI_CLOCK_HZ
+        int "SPI Pixel Clock (Hz)"
+        default 40000000
+        range 10000000 80000000
+        help
+            SPI clock frequency in Hz.
+            40 MHz (40000000) is standard for GC9A01.
+
+endmenu

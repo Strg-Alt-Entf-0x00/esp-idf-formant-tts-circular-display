@@ -1,0 +1,39 @@
+version: "0.1.0"
+description: "Circular display UI framework for real-time formant speech synthesis visualization on GC9A01 (240x240)"
+url: "https://github.com/Strg-Alt-Entf-0x00/esp-idf-formant-tts-circular-display"
+repository: "https://github.com/Strg-Alt-Entf-0x00/esp-idf-formant-tts-circular-display.git"
+issues: "https://github.com/Strg-Alt-Entf-0x00/esp-idf-formant-tts-circular-display/issues"
+license: "MIT"
+targets:
+  - esp32p4
+  - esp32s3
+  - esp32
+tags:
+  - display
+  - tts
+  - speech
+  - circular
+  - gc9a01
+  - visualization
+  - formant
+  - lovyangfx
+
+dependencies:
+  idf:
+    version: ">=5.0.0"
+  
+  # LovyanGFX is not published to the ESP Component Registry.
+  lovyan03/LovyanGFX:
+    git: https://github.com/lovyan03/LovyanGFX.git
+    version: 1.2.33
+  
+  # ESP LCD GC9A01 driver
+  espressif/esp_lcd_gc9a01:
+    version: "^2.0.0"
+
+files:
+  exclude:
+    - "examples/**/build/**/*"
+    - "examples/**/managed_components/**/*"
+    - ".git/**/*"
+    - "**/.DS_Store"

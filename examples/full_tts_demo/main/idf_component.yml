@@ -1,0 +1,9 @@
+dependencies:
+  # Use local component during development
+  # In production, use version from ESP Component Registry
+  Strg-Alt-Entf-0x00/esp-idf-formant-tts-circular-display:
+    override_path: ../../..
+  
+  # For real TTS synthesis, add:
+  # Strg-Alt-Entf-0x00/esp32-p4-idf-formant-tts: "^1.0.0"
+  # Strg-Alt-Entf-0x00/esp-idf-espure-g2p: "^1.0.0"
