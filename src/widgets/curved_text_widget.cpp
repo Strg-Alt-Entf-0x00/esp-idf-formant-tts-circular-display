@@ -45,7 +45,7 @@ void curved_text_widget_draw(
         return ((w + padding) / radius) * (180.0f / M_PI);
     };
     
-    bool scrolling = (utf8_len > 14);
+    bool scrolling = (active_idx >= 0) && (utf8_len > 14);
     
     auto draw_char_styled = [&](const char* p, int idx, float current_angle) {
         if (!p || !*p) return;
