@@ -1,10 +1,10 @@
-# Formant TTS Circular Display for ESP-IDF
+# Voice Circular Display for ESP-IDF
 
-Circular display UI framework (240x240) for real-time formant speech synthesis visualization.
+Circular display UI framework (240x240) for real-time voice, speech synthesis (IPA/Formant), and audio visualization.
 
 ## Features
 
-- **TTS Visualization**: Live phoneme display, IPA/word tracking with scrolling, spectrum analyzer
+- **Voice & TTS Visualization**: Live phoneme display, IPA/word tracking with scrolling, spectrum analyzer / VU-meter
 - **UTF-8/IPA Support**: Full Unicode rendering for proper phonetic symbols (ə, ʃ, θ, ˈ, etc.)
 - **Widgets**: Reusable curved text rendering, spectrum analyzer, HUD overlays
 - **Hardware**: Optimized for GC9A01 (240x240 round display), adaptable to other circular displays
@@ -25,7 +25,7 @@ Add to your project's `idf_component.yml`:
 
 ```yaml
 dependencies:
-  Strg-Alt-Entf-0x00/esp-idf-formant-tts-circular-display:
+  Strg-Alt-Entf-0x00/esp-idf-voice-circular-display:
     version: "^0.1.0"
 ```
 
@@ -33,7 +33,7 @@ dependencies:
 
 ```bash
 cd components
-git clone https://github.com/Strg-Alt-Entf-0x00/esp-idf-formant-tts-circular-display.git
+git clone https://github.com/Strg-Alt-Entf-0x00/esp-idf-voice-circular-display.git
 ```
 
 ## Quick Start
